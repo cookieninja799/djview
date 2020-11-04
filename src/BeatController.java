@@ -36,16 +36,14 @@ public class BeatController implements ControllerInterface {
 		if ((bpm - 1) <= 0) {
 			bpm = 0;
 			model.setBPM(bpm - 1);
-		} else {
 			stop();
-		}
+		} 
   	}
   
  	public void setBPM(int bpm) {
 		if (bpm <= 0) {
 			bpm = 0;
 			model.setBPM(bpm);
-		} else {
 			stop();
 		}
 	}
