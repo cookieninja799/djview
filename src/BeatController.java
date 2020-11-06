@@ -1,4 +1,5 @@
-
+//Thommy Naleudy
+//Erica Baynor
   
 public class BeatController implements ControllerInterface {
 	BeatModelInterface model;
