@@ -18,6 +18,8 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
     JButton setBPMButton;
     JButton increaseBPMButton;
     JButton decreaseBPMButton;
+    JButton increment10Button; //new button
+    JButton decrement10Button; //new button
     JMenuBar menuBar;
     JMenu menu;
     JMenuItem startMenuItem;
@@ -91,14 +93,20 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         setBPMButton.setSize(new Dimension(10,40));
         increaseBPMButton = new JButton(">>");
         decreaseBPMButton = new JButton("<<");
+	increment10Button = new JButton("+10");
+        decrement10Button = new JButton("-10");
         setBPMButton.addActionListener(this);
         increaseBPMButton.addActionListener(this);
         decreaseBPMButton.addActionListener(this);
+	increment10Button.addActionListener(this);
+        decrement10Button.addActionListener(this);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 2));
 
 		buttonPanel.add(decreaseBPMButton);
 		buttonPanel.add(increaseBPMButton);
+	        buttonPanel.add(increment10Button);
+       		buttonPanel.add(decrement10Button);
 
         JPanel enterPanel = new JPanel(new GridLayout(1, 2));
         enterPanel.add(bpmLabel);
@@ -135,16 +143,21 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
     	startMenuItem.setEnabled(false);
 	}
 
-    public void actionPerformed(ActionEvent event) {
-		if (event.getSource() == setBPMButton) {
-			int bpm = Integer.parseInt(bpmTextField.getText());
-        	controller.setBPM(bpm);
-		} else if (event.getSource() == increaseBPMButton) {
-			controller.increaseBPM();
-		} else if (event.getSource() == decreaseBPMButton) {
-			controller.decreaseBPM();
-		}
-    }
+    	public void actionPerformed(ActionEvent event) {
+	    if (event.getSource() == setBPMButton) {
+                int bpm = Integer.parseInt(bpmTextField.getText());
+                controller.setBPM(bpm);
+                bpmTextField.setText("");
+            } else if (event.getSource() == increaseBPMButton) {
+                controller.increaseBPM();
+            } else if (event.getSource() == decreaseBPMButton) {
+                controller.decreaseBPM();
+            } else if (event.getSource() == increment10Button) {
+                controller.increaseBPMBy10();
+            } else if (event.getSource() == decrement10Button) {
+                controller.decreaseBPMBy10();
+            }
+        }
 
 	public void updateBPM() {
 		if (model != null) {
