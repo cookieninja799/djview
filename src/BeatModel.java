@@ -20,11 +20,13 @@ public class BeatModel implements BeatModelInterface, MetaEventListener {
 	public void on() {
 		System.out.println("Starting the sequencer");
 		sequencer.start();
-		setBPM(90);
+		if (bpm == 0) {
+		    setBPM(90);
+		}
 	}
 
 	public void off() {
-		setBPM(0);
+		setBPM(bpm);
 		sequencer.stop();
 	}
 
