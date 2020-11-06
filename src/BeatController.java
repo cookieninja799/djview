@@ -3,7 +3,7 @@
 public class BeatController implements ControllerInterface {
 	BeatModelInterface model;
     DJView view;
-    Boolean isOn;
+    Boolean isOn = true;
    
 	public BeatController(BeatModelInterface model) {
 		this.model = model;
