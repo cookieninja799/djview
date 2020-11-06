@@ -5,5 +5,7 @@ public interface ControllerInterface {
 	void stop();
 	void increaseBPM();
 	void decreaseBPM();
+	void increaseBPMBy10();
+	void decreaseBPMBy10();
  	void setBPM(int bpm);
 }
