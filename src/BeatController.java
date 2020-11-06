@@ -2,7 +2,8 @@
   
 public class BeatController implements ControllerInterface {
 	BeatModelInterface model;
-	DJView view;
+    DJView view;
+    Boolean isOn;
    
 	public BeatController(BeatModelInterface model) {
 		this.model = model;
@@ -15,6 +16,7 @@ public class BeatController implements ControllerInterface {
 	}
   
 	public void start() {
+        isOn = true;
 		setBPM(90);
 		model.on();
 		view.disableStartMenuItem();
@@ -22,6 +24,7 @@ public class BeatController implements ControllerInterface {
 	}
   
 	public void stop() {
+		isOn = false;
 		model.off();
 		view.disableStopMenuItem();
 		view.enableStartMenuItem();
@@ -58,11 +61,13 @@ public class BeatController implements ControllerInterface {
     }
     
     public void setBPM(int bpm) {
-        if (bpm <= 0) {
-            model.setBPM(0);
-            stop();
-        } else {
-            model.setBPM(bpm);
+        if (isOn) {
+            if (bpm <= 0) {
+                model.setBPM(0);
+                stop();
+            } else {
+                model.setBPM(bpm);
+            }
         }
     }
 }
